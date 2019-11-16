@@ -4,10 +4,7 @@ package com.matheusCalaca.apiRest.rest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -18,10 +15,11 @@ public class HelloWorldEndpoint {
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
+
     @ApiOperation(value = "Mostra mensagem", notes = "blbaça blabala mostra mensagem")
     public Response doGet() {
         return Response
-                .ok("{\"mensagem\": \"Hello from Thorntail!\"}")
+                .ok("{\"mensagem\": \"GET - Hello from Thorntail!\"}")
                 .build();
     }
 
@@ -34,5 +32,26 @@ public class HelloWorldEndpoint {
                 .ok("{\"mensagem\": \"POST - Hello from Thorntail!\"}")
                 .build();
     }
+
+    @PUT
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Mostra mensagem", notes = "blbaça blabala mostra mensagem", response = String.class)
+    public Response doPut() {
+        return Response
+                .ok("{\"mensagem\": \"PUT - Hello from Thorntail!\"}")
+                .build();
+    }
+
+    @DELETE
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Mostra mensagem", notes = "blbaça blabala mostra mensagem", response = String.class)
+    public Response doDelete() {
+        return Response
+                .ok("{\"mensagem\": \"DELETE - Hello from Thorntail!\"}")
+                .build();
+    }
+
 
 }
