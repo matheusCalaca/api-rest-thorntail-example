@@ -15,7 +15,6 @@ public class HelloWorldEndpoint {
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-
     @ApiOperation(value = "Mostra mensagem", notes = "blbaça blabala mostra mensagem")
     public Response doGet() {
         return Response
