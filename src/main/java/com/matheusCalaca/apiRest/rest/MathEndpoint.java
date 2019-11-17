@@ -1,5 +1,6 @@
 package com.matheusCalaca.apiRest.rest;
 
+import com.matheusCalaca.apiRest.rest.model.Operador;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -16,7 +17,7 @@ public class MathEndpoint {
      *                             soma/num1/num2
      * http://localhost:8080/math/soma/1/5
      *
-     * @param num1
+     * @param numero1
      * @param num2
      * @return
      */
@@ -26,8 +27,8 @@ public class MathEndpoint {
             "neste exmplo e feito a soma de dois numeros que são passados por path param. que são parametros do caminho da " +
             "requisição")
     @Path("/soma/{num1}/{num2}")
-    public Response soma(@PathParam("num1") Integer num1, @PathParam("num2") Integer num2 ) {
-        Integer result = num1 + num2;
+    public Response soma(@PathParam("num1") Integer numero1, @PathParam("num2") Integer num2 ) {
+        Integer result = numero1 + num2;
 
         return Response
                 .ok(result)
@@ -36,7 +37,7 @@ public class MathEndpoint {
 
     /**
      * requisição get passando parametros por QueryParam
-     *                           /sub?num1=XX&num2=XX
+     *                       /math/sub?num1=XX&num2=XX
      * http://localhost:8080/math/sub?num1=12&num2=20
      *
      * @param num1
@@ -51,6 +52,18 @@ public class MathEndpoint {
     @Path("/sub")
     public Response sub(@QueryParam("num1") Integer num1, @QueryParam("num2") Integer num2 ) {
         Integer result = num1 - num2;
+
+        return Response
+                .ok(result)
+                .build();
+    }
+
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Faz a divisão " )
+    @Path("/divisao")
+    public Response divisao(Operador math) {
+        float result = math.getNum1() / math.getNum2();
 
         return Response
                 .ok(result)
